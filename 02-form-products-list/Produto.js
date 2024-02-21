@@ -101,9 +101,14 @@ class Product {
     let produto = {};
     produto.id = this.id;
     produto.name = document.getElementById("produto").value;
-    produto.preco = document.getElementById("preco").value;
+    produto.preco = this.currentie(
+      Number(document.getElementById("preco").value)
+    );
 
     return produto;
+  }
+  currentie(value) {
+    return `${value} € `;
   }
 
   validationFields(produto) {
