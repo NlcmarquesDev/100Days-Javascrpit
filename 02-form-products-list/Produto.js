@@ -101,13 +101,13 @@ class Product {
     let produto = {};
     produto.id = this.id;
     produto.name = document.getElementById("produto").value;
-    produto.preco = this.currentie(
+    produto.preco = this.currency(
       Number(document.getElementById("preco").value)
     );
 
     return produto;
   }
-  currentie(value) {
+  currency(value) {
     return `${value} € `;
   }
 
