@@ -1,3 +1,5 @@
+import APIKEY from "./env.js";
+
 const container = document.querySelector(".container");
 const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
@@ -22,7 +24,7 @@ function getWeather(getWeather) {
 search.addEventListener("click", async (event) => {
   const city = document.querySelector(".search-box input").value;
   if (city === "") return;
-  const APIKEY = "e669e1706885228403f0bf6c5c4bea6c";
+
   const APIUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKEY}`;
   const res = await fetch(APIUrl);
   const data = await res.json();
@@ -45,7 +47,6 @@ search.addEventListener("click", async (event) => {
   );
   const wind = weatherDetails.querySelector(".weather-details .wind span");
 
-  console.log(data);
   let temCelsius = Math.round(parseInt(data.main.temp) - 273.15);
 
   image.src = getWeather(data.weather[0].main);
