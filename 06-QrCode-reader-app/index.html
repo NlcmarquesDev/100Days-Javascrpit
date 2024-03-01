@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="wrapper">
       <form action="#">
         <input type="file" hidden />
-        <img src="#" alt="" />
+        <img src="" alt="" />
         <div class="content">
           <i class="fa-solid fa-cloud-arrow-up"></i>
           <p>Upload QR Code To Read</p>
@@ -25,11 +25,10 @@
       </form>
       <div class="details">
         <textarea spellcheck="false" disabled> </textarea>
-      </div>
-      <div class="result"></div>
-      <div class="wrapper-btns">
-        <button id="close">Close</button>
-        <button id="copy">Copy Text</button>
+        <div class="buttons">
+          <button class="close">Close</button>
+          <button class="copy">Copy Text</button>
+        </div>
       </div>
     </div>
     <script type="module" src="script.js"></script>
