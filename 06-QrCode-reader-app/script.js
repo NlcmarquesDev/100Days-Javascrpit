@@ -5,29 +5,31 @@ const infoText = document.querySelector("p");
 const closeBtn = document.querySelector(".close");
 const copyBtn = document.querySelector(".copy");
 
+// Fecth Data From Api
+
 function fetchRequest(file, formData) {
-  infoText.innerHTML = "Scanning QR Code ...";
+  infoText.innerText = "Scanning QR Code...";
   fetch("http://api.qrserver.com/v1/read-qr-code/", {
     method: "POST",
     body: formData,
   })
-    .then((response) => response.json())
+    .then((res) => res.json())
     .then((result) => {
       result = result[0].symbol[0].data;
-      infoText.innerHTML = result
+      infoText.innerText = result
         ? "Upload QR Code To Scan"
-        : "Coulnd't Scan Qr Code";
-
+        : "Couldn't Scan QR Code";
       if (!result) return;
       document.querySelector("textarea").innerText = result;
       form.querySelector("img").src = URL.createObjectURL(file);
       wrapper.classList.add("active");
     })
-    .ctach(() => {
-      infoText.innerHTML = "Coulnd't Scan Qr Code...";
+    .catch(() => {
+      infoText.innerText = "Couldn't Scan QR Code...";
     });
 }
 
+// Send QR Code File With Request To Api
 fileInp.addEventListener("change", async (e) => {
   let file = e.target.files[0];
   if (!file) return;
@@ -36,13 +38,13 @@ fileInp.addEventListener("change", async (e) => {
   fetchRequest(file, formData);
 });
 
+// Copy Text To Clipboard
 copyBtn.addEventListener("click", () => {
   let text = document.querySelector("textarea").textContent;
   navigator.clipboard.writeText(text);
 });
 
-closeBtn.addEventListener("click", () => {
-  wrapper.classList.remove("active");
-});
-
+// When user click on form do fileInp Evenetlistener function
 form.addEventListener("click", () => fileInp.click());
+
+closeBtn.addEventListener("click", () => wrapper.classList.remove("active"));
